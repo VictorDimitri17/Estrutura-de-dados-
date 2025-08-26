@@ -1,0 +1,10 @@
+public interface Stackable {
+void push (Object data);
+Object peek();
+void uptade(Object data);
+Object pop();
+
+boolean isFull();
+boolean isEmpty();
+String print();
+}
