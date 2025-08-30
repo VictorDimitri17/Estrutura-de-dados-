@@ -1,0 +1,87 @@
+public class PilhaInvertida implements Stackable {
+
+    private int pointerTop;
+    private Object[] data;
+
+    public PilhaInvertida(int tamanho) {
+        pointerTop = -1;
+        data = new Object[tamanho];
+    }
+
+    public PilhaInvertida() {
+        this(10);
+    }
+
+    @Override
+    public void push(Object novoElemento) {
+        if (!isFull()) {
+            pointerTop++;
+            data[pointerTop] = novoElemento;
+        } else {
+            System.out.println("Pilha Cheia!");
+        }
+    }
+
+    @Override
+    public void uptade(Object dado) {
+        if(!isEmpty()) {
+            data[pointerTop] = dado;
+        } else {
+            System.out.println("Pilha Vazia!");
+        }
+    }
+
+    @Override
+    public Object pop() {
+        Object dataTop = null;
+        if(!isEmpty()) {
+            dataTop = data[0]; // Remove do início (base da pilha invertida)
+
+            // Desloca todos os elementos para a esquerda
+            for(int i = 0; i < pointerTop; i++) {
+                data[i] = data[i + 1];
+            }
+
+            pointerTop--;
+            data[pointerTop + 1] = null; // Limpa a última posição
+        } else {
+            System.out.println("Pilha Vazia!");
+        }
+        return dataTop;
+    }
+
+    @Override
+    public Object peek() {
+        Object dataTop = null;
+        if(!isEmpty()) {
+            dataTop = data[0]; // Espia o elemento da base (primeiro)
+        } else {
+            System.out.println("Pilha Vazia!");
+        }
+        return dataTop;
+    }
+
+    @Override
+    public boolean isFull() {
+        return (pointerTop == data.length - 1);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return (pointerTop == -1);
+    }
+
+    @Override
+    public String print() {
+        String resultado = "[";
+        for(int i = 0; i <= pointerTop; i++) {
+            if (i == pointerTop) {
+                resultado += data[i];
+            }
+            else {
+                resultado += data[i] + ",";
+            }
+        }
+        return resultado + "]";
+    }
+}
