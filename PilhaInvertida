@@ -35,15 +35,14 @@ public class PilhaInvertida implements Stackable {
     public Object pop() {
         Object dataTop = null;
         if(!isEmpty()) {
-            dataTop = data[0]; // Remove do início (base da pilha invertida)
+            dataTop = data[0]; 
 
-            // Desloca todos os elementos para a esquerda
             for(int i = 0; i < pointerTop; i++) {
                 data[i] = data[i + 1];
             }
 
             pointerTop--;
-            data[pointerTop + 1] = null; // Limpa a última posição
+            data[pointerTop + 1] = null; 
         } else {
             System.out.println("Pilha Vazia!");
         }
@@ -54,7 +53,7 @@ public class PilhaInvertida implements Stackable {
     public Object peek() {
         Object dataTop = null;
         if(!isEmpty()) {
-            dataTop = data[0]; // Espia o elemento da base (primeiro)
+            dataTop = data[0];
         } else {
             System.out.println("Pilha Vazia!");
         }
