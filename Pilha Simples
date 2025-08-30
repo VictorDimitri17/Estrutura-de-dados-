@@ -1,4 +1,9 @@
 public class PilhaEstatica implements Stackable{
-         private int pointerTop = -1;
-         private Object [] dados; 
+         private int pointerTop;
+         private Object [] dados;
+public PilhaEstatica (int tamanho){
+         pointerTop = - 1;
+         dados = new Object[tamanho];
+}
+
 }
