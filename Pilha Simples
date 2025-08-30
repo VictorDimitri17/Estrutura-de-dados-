@@ -1,9 +1,101 @@
-public class PilhaEstatica implements Stackable{
-         private int pointerTop;
-         private Object [] dados;
-public PilhaEstatica (int tamanho){
-         pointerTop = - 1;
-         dados = new Object[tamanho];
-}
+public class PilhaEstatica implements Stackable {
 
+    private int pointerTop;
+    private Object[] data;
+
+    public PilhaEstatica(int tamanho) {
+        pointerTop = -1;
+        data = new Object[tamanho];
+    }
+
+    public PilhaEstatica() {
+        this(10);
+    }
+    public void empilhar(Object novoElemento) {
+        if (!isFull()) {
+            pointerTop++;
+            data[pointerTop] = novoElemento;
+        } else {
+            System.out.println("Pilha Cheia!");
+        }
+    }
+    public void atualizar(Object dado) {
+        if(!isEmpty()) {
+            data[pointerTop] = dado;
+        } else {
+            System.out.println("Pilha Vazia!");
+        }
+    }
+    public Object desempilhar() {
+        Object dataTop = null;
+        if(!isEmpty()) {
+            dataTop = data[pointerTop];
+            pointerTop--;
+        } else {
+            System.out.println("Pilha Vazia!");
+        }
+        return dataTop;
+    }
+    public Object espiar() {
+        Object dataTop = null;
+        if(!isFull()) {
+            dataTop = data[pointerTop];
+        } else {
+            System.out.println("Pilha Vazia!");
+        }
+        return dataTop;
+    }
+    public boolean estaCheia() {
+        return (pointerTop == data.length - 1);
+    }
+    public boolean estaVazia() {
+        return (pointerTop == -1);
+    }
+    public String imprimir() {
+        String resultado = "[";
+        for(int i = pointerTop; i >= 0; i--) {
+            if (i == 0) {
+                resultado += data[i];
+            }
+            else {
+                resultado += data[i] + ",";
+            }
+        }
+        return resultado + "]";
+    }
+
+    @Override
+    public void push(Object data) {
+
+    }
+
+    @Override
+    public Object peek() {
+        return null;
+    }
+
+    @Override
+    public void uptade(Object data) {
+
+    }
+
+    @Override
+    public Object pop() {
+        return null;
+    }
+
+    @Override
+    public boolean isFull() {
+        return false;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public String print() {
+        return "";
+    }
 }
