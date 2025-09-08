@@ -1,0 +1,65 @@
+public class ArrayQueue {
+   private Object[] data;
+   private int head;
+   private int tail;
+
+
+   public ArrayQueue() {
+       this(10);
+   }
+
+
+   public ArrayQueue(int lenght) {
+       Object[] data = new Object[lenght];
+       head = 0;
+       tail = -1;
+   }
+   public void enqueue(Object data) {
+       if (isFull()) {
+           System.err.println("Queue is full!");
+       } else {
+           tail++;
+           this.data[tail] = data;
+       }
+   }
+   public Object dequeue() {
+       Object aux = null;
+       if (isEmpty()) {
+           System.err.println("Queue is empty!");
+       } else {
+           aux = data[head];
+       }
+       head++;
+       return aux;
+   }
+   public Object front() {
+       Object aux = null;
+       if(isEmpty()) {
+           System.err.println("Queue is empty");
+       } else {
+           aux = data[head];
+       }
+       return aux;
+   }
+   boolean isEmpty() {
+       return (head -1 == tail);
+   }
+
+
+   boolean isFull () {
+       return (tail == data.length-1);
+   }
+
+
+   String print () {
+       String result = "";
+       for(int i = head; i <= tail; i++)   {
+           result += data[i];
+           if(i != tail) {
+               result += ",";
+           }
+       }
+       return "[" + result + "]";
+   }
+}
+
