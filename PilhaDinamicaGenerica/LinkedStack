@@ -1,43 +1,109 @@
 /**
- * Interface que define as operações básicas de uma pilha
+ * Implementação de pilha usando lista encadeada
  * @author Víctor Dimitri
  */
-public interface Stackable<T> {
+public class LinkedStack<T> implements Stackable<T> {
+    private DoubleNode<T> top;
+    private int size;
     
     /**
-     * Adiciona um elemento no topo da pilha
-     * @param element Elemento a ser adicionado
+     * Construtor que inicializa uma pilha vazia
      */
-    void push(T element);
+    public LinkedStack() {
+        this.top = null;
+        this.size = 0;
+    }
+    
+    @Override
+    public void push(T element) {
+        DoubleNode<T> newNode = new DoubleNode<>(element);
+        
+        if (isEmpty()) {
+            top = newNode;
+        } else {
+            newNode.setNext(top);
+            top.setPrevious(newNode);
+            top = newNode;
+        }
+        size++;
+    }
+    
+    @Override
+    public T pop() {
+        if (isEmpty()) {
+            throw new IllegalStateException("A pilha está vazia. Não é possível remover elementos.");
+        }
+        
+        T removedData = top.getData();
+        top = top.getNext();
+        
+        if (top != null) {
+            top.setPrevious(null);
+        }
+        
+        size--;
+        return removedData;
+    }
+    
+    @Override
+    public T peek() {
+        if (isEmpty()) {
+            throw new IllegalStateException("A pilha está vazia. Não é possível visualizar o topo.");
+        }
+        
+        return top.getData();
+    }
+    
+    @Override
+    public boolean isEmpty() {
+        return top == null;
+    }
+    
+    @Override
+    public int size() {
+        return size;
+    }
+    
+    @Override
+    public void clear() {
+        top = null;
+        size = 0;
+    }
     
     /**
-     * Remove e retorna o elemento do topo da pilha
-     * @return Elemento removido do topo
-     * @throws IllegalStateException se a pilha estiver vazia
+     * Exibe todos os elementos da pilha (do topo para a base)
      */
-    T pop();
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Pilha vazia");
+            return;
+        }
+        
+        DoubleNode<T> current = top;
+        System.out.print("Topo -> ");
+        while (current != null) {
+            System.out.print(current.getData());
+            if (current.getNext() != null) {
+                System.out.print(" -> ");
+            }
+            current = current.getNext();
+        }
+        System.out.println(" <- Base");
+    }
     
     /**
-     * Retorna o elemento do topo sem removê-lo
-     * @return Elemento do topo
-     * @throws IllegalStateException se a pilha estiver vazia
+     * Verifica se um elemento está na pilha
+     * @param element Elemento a ser buscado
+     * @return true se o elemento estiver na pilha, false caso contrário
      */
-    T peek();
-    
-    /**
-     * Verifica se a pilha está vazia
-     * @return true se a pilha estiver vazia, false caso contrário
-     */
-    boolean isEmpty();
-    
-    /**
-     * Retorna o número de elementos na pilha
-     * @return Quantidade de elementos
-     */
-    int size();
-    
-    /**
-     * Remove todos os elementos da pilha
-     */
-    void clear();
+    public boolean contains(T element) {
+        DoubleNode<T> current = top;
+        while (current != null) {
+            if (current.getData().equals(element)) {
+                return true;
+            }
+            current = current.getNext();
+        }
+        return false;
+    }
 }
