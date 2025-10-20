@@ -1,1 +1,43 @@
-
+/**
+ * Interface que define as operações básicas de uma pilha
+ * @author Víctor Dimitri
+ */
+public interface Stackable<T> {
+    
+    /**
+     * Adiciona um elemento no topo da pilha
+     * @param element Elemento a ser adicionado
+     */
+    void push(T element);
+    
+    /**
+     * Remove e retorna o elemento do topo da pilha
+     * @return Elemento removido do topo
+     * @throws IllegalStateException se a pilha estiver vazia
+     */
+    T pop();
+    
+    /**
+     * Retorna o elemento do topo sem removê-lo
+     * @return Elemento do topo
+     * @throws IllegalStateException se a pilha estiver vazia
+     */
+    T peek();
+    
+    /**
+     * Verifica se a pilha está vazia
+     * @return true se a pilha estiver vazia, false caso contrário
+     */
+    boolean isEmpty();
+    
+    /**
+     * Retorna o número de elementos na pilha
+     * @return Quantidade de elementos
+     */
+    int size();
+    
+    /**
+     * Remove todos os elementos da pilha
+     */
+    void clear();
+}
