@@ -78,3 +78,5 @@ public class DoubleNode<T> {
         return "DoubleNode{" + "data=" + data + '}';
     }
 }
+
+
