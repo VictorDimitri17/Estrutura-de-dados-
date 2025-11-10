@@ -1,0 +1,32 @@
+import java.time.Year;
+
+public interface CarDAO<Car> {
+    // Operações básicas CRUD
+    void addCar(Car car); // Adiciona (enfileira) um novo carro
+    Car getCarByPlate(String plate); // Busca um carro pela placa sem remover
+    Car[] getAllCars(); // Retorna todos os carros em um array
+    void updateCar(Car newCar); // Atualiza um carro existente
+    Car removeCarByPlate(String plate); // Remove (desenfileira) um carro pela placa
+
+    // Operações de consulta específicas para carros
+    Car[] getCarsByManufacturer(String manufacturer); // Busca por fabricante
+    Car[] getCarsByModel(String model); // Busca por modelo
+    Car[] getCarsByYear(Year year); // Busca por ano de fabricação
+    Car[] getCarsByPriceRange(double minPrice, double maxPrice); // Busca por faixa de preço
+    Car[] getCarsByManufactureYearRange(Year minYear, Year maxYear); // Busca por intervalo de anos
+
+    // Operações de análise e estatísticas
+    Car getMostExpensiveCar(); // Encontra o carro mais caro
+    Car getCheapestCar(); // Encontra o carro mais barato
+    Car getNewestCar(); // Encontra o carro mais novo (ano de fabricação mais recente)
+    Car getOldestCar(); // Encontra o carro mais antigo (ano de fabricação mais antigo)
+
+    // Operações de relatório e estatísticas
+    String printCars(); // Retorna uma representação em string de todos os carros
+    int getTotalCars(); // Retorna o número total de carros
+    double getAveragePrice(); // Calcula o preço médio dos carros
+
+    // Operações de gerenciamento
+    boolean isCarAvailable(String plate); // Verifica se um carro existe pela placa
+    void clearAllCars(); // Remove todos os carros (esvazia a fila)
+}
